@@ -1,5 +1,7 @@
 package entity;
 
+import entity.room.Room_CD;
+
 import java.util.List;
 
 /**

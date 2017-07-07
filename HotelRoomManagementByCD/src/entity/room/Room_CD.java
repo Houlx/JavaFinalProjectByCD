@@ -1,4 +1,4 @@
-package entity;
+package entity.room;
 
 import common.RoomState;
 
@@ -11,12 +11,10 @@ import common.RoomState;
 public class Room_CD {
     private int roomNumber;
     private RoomState state;
-    private int cost;
 
-    public Room_CD(int roomNumber, RoomState state, int cost) {
+    public Room_CD(int roomNumber, RoomState state) {
         this.roomNumber = roomNumber;
         this.state = state;
-        this.cost = cost;
     }
 
     public Room_CD() {
@@ -40,11 +38,4 @@ public class Room_CD {
         this.state = state;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
 }
