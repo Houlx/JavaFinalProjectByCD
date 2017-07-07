@@ -3,6 +3,8 @@ package entity.room;
 import common.RoomState;
 
 /**
+ * Standard room class extending from room class
+ *
  * @author houlx
  *         Created by CD on 2017/7/7 23:07.
  */
