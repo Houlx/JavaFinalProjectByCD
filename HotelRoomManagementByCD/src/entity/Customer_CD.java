@@ -14,12 +14,14 @@ public class Customer_CD {
     private String name;
     private long IdNumber;
     private List<Room_CD> reservedRooms;
+    private Room_CD roomLive;
     private int expense;
 
-    public Customer_CD(String name, long idNumber, List<Room_CD> reservedRooms, int expense) {
+    public Customer_CD(String name, long idNumber, List<Room_CD> reservedRooms, Room_CD roomLive, int expense) {
         this.name = name;
-        IdNumber = idNumber;
+        this.IdNumber = idNumber;
         this.reservedRooms = reservedRooms;
+        this.roomLive = roomLive;
         this.expense = expense;
     }
 
@@ -57,5 +59,13 @@ public class Customer_CD {
 
     public void setExpense(int expense) {
         this.expense = expense;
+    }
+
+    public Room_CD getRoomLive() {
+        return roomLive;
+    }
+
+    public void setRoomLive(Room_CD roomLive) {
+        this.roomLive = roomLive;
     }
 }

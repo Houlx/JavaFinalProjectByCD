@@ -2,6 +2,8 @@ package entity.room;
 
 import common.RoomState;
 
+import java.util.ArrayList;
+
 /**
  * Standard room class extending from room class
  *
@@ -11,12 +13,11 @@ import common.RoomState;
 public class StandardRoom_CD extends Room_CD {
     public StandardRoom_CD(int roomNumber, RoomState state) {
         super(roomNumber, state);
+        cost = 520;
+        customerCheckedIn = new ArrayList<>(2);
     }
 
     public StandardRoom_CD() {
     }
 
-    public int getCost() {
-        return 520;
-    }
 }

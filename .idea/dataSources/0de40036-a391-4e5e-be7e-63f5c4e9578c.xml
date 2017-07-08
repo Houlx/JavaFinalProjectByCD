@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="HotelManagementSQL.sqlite">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <table id="3" parent="2" name="customer"/>
+    <table id="4" parent="2" name="room_cost"/>
+    <table id="5" parent="2" name="rooms"/>
+    <table id="6" parent="2" name="sqlite_master"/>
+    <column id="7" parent="3" name="name">
+      <DataType>TEXT|0</DataType>
+    </column>
+    <column id="8" parent="3" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0</DataType>
+    </column>
+    <column id="9" parent="3" name="room_living">
+      <Position>2</Position>
+      <DataType>INT|0</DataType>
+    </column>
+    <column id="10" parent="3" name="expense">
+      <Position>3</Position>
+      <DataType>INT|0</DataType>
+    </column>
+    <foreign-key id="11" parent="3" name="customer___fk_room_living">
+      <ColNames>room_living</ColNames>
+      <RefTableName>rooms</RefTableName>
+      <RefColNames>room_number</RefColNames>
+    </foreign-key>
+    <column id="12" parent="4" name="room_type">
+      <DataType>TEXT|0</DataType>
+    </column>
+    <column id="13" parent="4" name="cost">
+      <Position>1</Position>
+      <DataType>INT|0</DataType>
+    </column>
+    <column id="14" parent="5" name="room_type">
+      <DataType>TEXT|0</DataType>
+    </column>
+    <column id="15" parent="5" name="room_number">
+      <Position>1</Position>
+      <DataType>INT|0</DataType>
+    </column>
+    <column id="16" parent="5" name="room_state">
+      <Position>2</Position>
+      <DataType>TEXT|0</DataType>
+    </column>
+    <column id="17" parent="5" name="cost">
+      <Position>3</Position>
+      <DataType>INT|0</DataType>
+    </column>
+    <column id="18" parent="5" name="customer_living">
+      <Position>4</Position>
+      <DataType>INTEGER|0</DataType>
+    </column>
+    <column id="19" parent="5" name="checkin_date">
+      <Position>5</Position>
+      <DataType>TEXT|0</DataType>
+      <DefaultExpression>&apos;1970-1-1&apos;</DefaultExpression>
+    </column>
+    <column id="20" parent="5" name="checkout_date">
+      <Position>6</Position>
+      <DataType>TEXT|0</DataType>
+      <DefaultExpression>&apos;1970-1-1&apos;</DefaultExpression>
+    </column>
+    <foreign-key id="21" parent="5" name="rooms___fk_customer">
+      <ColNames>customer_living</ColNames>
+      <RefTableName>customer</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="22" parent="6" name="type">
+      <DataType>text|0</DataType>
+    </column>
+    <column id="23" parent="6" name="name">
+      <Position>1</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="24" parent="6" name="tbl_name">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="25" parent="6" name="rootpage">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+    </column>
+    <column id="26" parent="6" name="sql">
+      <Position>4</Position>
+      <DataType>text|0</DataType>
+    </column>
+  </database-model>
+</dataSource>

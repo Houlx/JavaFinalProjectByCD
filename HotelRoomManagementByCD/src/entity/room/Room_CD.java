@@ -1,6 +1,9 @@
 package entity.room;
 
 import common.RoomState;
+import entity.Customer_CD;
+
+import java.util.List;
 
 /**
  * Entity class of rooms in hotel
@@ -11,6 +14,8 @@ import common.RoomState;
 public class Room_CD {
     private int roomNumber;
     private RoomState state;
+    protected static int cost;
+    protected List<Customer_CD> customerCheckedIn;
 
     public Room_CD(int roomNumber, RoomState state) {
         this.roomNumber = roomNumber;
@@ -19,6 +24,10 @@ public class Room_CD {
 
     public Room_CD() {
 
+    }
+
+    public static int getCost() {
+        return cost;
     }
 
     public int getRoomNumber() {
@@ -38,4 +47,7 @@ public class Room_CD {
         this.state = state;
     }
 
+    public List<Customer_CD> getCustomerCheckedIn() {
+        return customerCheckedIn;
+    }
 }
