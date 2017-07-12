@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * date formatter class
+ *
  * @author houlx
  *         Created by CD on 2017/7/12 17:29.
  */

@@ -9,7 +9,6 @@ import entity.room.SingleRoom_CD;
 import entity.room.StandardRoom_CD;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class HotelManagement_CD {
         return allRooms;
     }
 
-    public void showRooms() {
+    /*public void showRooms() {
         String state = "";
         for (Room_CD room : allRooms) {
             switch (room.getState()) {
@@ -51,7 +50,7 @@ public class HotelManagement_CD {
         if (room != null) {
             System.out.println(room.getRoomNumber() + "\t" + room.getRoomType() + "\t最多住" + room.getCustomerMaxNum() + "人\t现在" + room.getCustomerCurrentNum() + "人\t" + room.getCost());
         }
-    }
+    }*/
 
     public void init() {
         for (int i = 1; i <= 10; i++) {
@@ -98,6 +97,7 @@ public class HotelManagement_CD {
         }
         return null;
     }
+
 
     public void reserve(Customer_CD customer, Room_CD room, String reserveDate) throws ParseException {
         if (room.getState() == RoomState.FREE) {
