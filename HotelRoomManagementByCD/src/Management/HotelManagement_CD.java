@@ -1,5 +1,6 @@
 package Management;
 
+import common.Formatter;
 import common.RoomState;
 import entity.Customer_CD;
 import entity.room.PresidentialSuite_CD;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class HotelManagement_CD {
     private List<Room_CD> allRooms = new ArrayList<>(50);
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private Formatter format = new Formatter("yyyy-MM-dd");
 
     public List<Room_CD> getAllRooms() {
         return allRooms;
@@ -42,7 +43,7 @@ public class HotelManagement_CD {
                 default:
                     break;
             }
-            System.out.println(room.getRoomNumber() + "\t" + room.getRoomType() + "\t" + state + "\t最多住" + room.getCustomerMaxNum() + "人\t现在" + room.getCustomerCurrentNum() + "人\t" + room.getCost()+"\t预订日"+room.getReservedDate()+"\t预订人"+room.getReservedBy()+"\t入住日"+room.getCheckInDate()+"\t退房日"+room.getCheckOutDate());
+            System.out.println(room.getRoomNumber() + "\t" + room.getRoomType() + "\t" + state + "\t最多住" + room.getCustomerMaxNum() + "人\t现在" + room.getCustomerCurrentNum() + "人\t" + room.getCost() + "\t预订日" + format.dateToString(room.getReservedDate()) + "\t预订人" + room.getReservedBy() + "\t入住日" + format.dateToString(room.getCheckInDate()) + "\t退房日" + format.dateToString(room.getCheckOutDate()));
         }
     }
 
