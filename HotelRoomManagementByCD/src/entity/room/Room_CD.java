@@ -19,8 +19,6 @@ public abstract class Room_CD {
     private int customerCurrentNum;
     protected int cost;
     protected String roomType;
-    private Customer_CD reservedBy;
-    private Date reservedDate;
     private Date checkInDate;
     private Date checkOutDate;
     protected List<Customer_CD> customerCheckedIn;
@@ -35,21 +33,17 @@ public abstract class Room_CD {
         this.roomNumber = roomNumber;
         this.state = state;
         customerCurrentNum = 0;
-        reservedBy = null;
-        reservedDate = null;
         checkInDate = null;
         checkOutDate = null;
         customerCheckedIn = null;
     }
 
-    public Room_CD(int roomNumber, RoomState state, int customerMaxNum, int customerCurrentNum, int cost, Customer_CD reservedBy, Date reservedDate, Date checkInDate, Date checkOutDate, List<Customer_CD> customerCheckedIn) {
+    public Room_CD(int roomNumber, RoomState state, int customerMaxNum, int customerCurrentNum, int cost, Date checkInDate, Date checkOutDate, List<Customer_CD> customerCheckedIn) {
         this.roomNumber = roomNumber;
         this.state = state;
         this.customerMaxNum = customerMaxNum;
         this.customerCurrentNum = customerCurrentNum;
         this.cost = cost;
-        this.reservedBy = reservedBy;
-        this.reservedDate = reservedDate;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.customerCheckedIn = customerCheckedIn;
@@ -95,14 +89,6 @@ public abstract class Room_CD {
         return customerCheckedIn;
     }
 
-    public Date getReservedDate() {
-        return reservedDate;
-    }
-
-    public void setReservedDate(Date reservedDate) {
-        this.reservedDate = reservedDate;
-    }
-
     public Date getCheckInDate() {
         return checkInDate;
     }
@@ -117,14 +103,6 @@ public abstract class Room_CD {
 
     public void setCheckOutDate(Date checkOutDate) {
         this.checkOutDate = checkOutDate;
-    }
-
-    public Customer_CD getReservedBy() {
-        return reservedBy;
-    }
-
-    public void setReservedBy(Customer_CD reservedBy) {
-        this.reservedBy = reservedBy;
     }
 
     public int getCustomerCurrentNum() {

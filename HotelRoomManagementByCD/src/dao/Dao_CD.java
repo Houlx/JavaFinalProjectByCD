@@ -7,7 +7,7 @@ import java.sql.*;
  *         Created by CD on 2017/7/12 18:06.
  */
 public class Dao_CD {
-    private String database;
+    private String database = "jdbc:sqlite:/Users/houlx/IdeaProjects/JavaFinalProjectByCD/HotelRoomManagementByCD/hotel_management.sqlite";
     private Connection connection;
     private Statement statement;
 
@@ -18,12 +18,27 @@ public class Dao_CD {
     public Dao_CD() {
     }
 
+    public void connectionClose() {
+        try {
+            this.connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void statementClose() {
+        try {
+            this.statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void connect() {
         connection = null;
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(database);
-            System.out.println("SUCCESSFULLY");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -56,16 +71,6 @@ public class Dao_CD {
             resultSet = statement.executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                statement.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return resultSet;
     }

@@ -21,14 +21,15 @@ public class SingleRoom_CD extends Room_CD {
      */
     public SingleRoom_CD(int roomNumber, RoomState state) {
         super(roomNumber, state);
-        roomType="Single";
+        roomType = "single";
         cost = 320;
         customerMaxNum = 1;
         customerCheckedIn = new ArrayList<>(customerMaxNum);
     }
 
-    public SingleRoom_CD(int roomNumber, RoomState state, int customerMaxNum, int customerCurrentNum, int cost, Customer_CD reservedBy, Date reservedDate, Date checkInDate, Date checkOutDate, List<Customer_CD> customerCheckedIn) {
-        super(roomNumber, state, customerMaxNum, customerCurrentNum, cost, reservedBy, reservedDate, checkInDate, checkOutDate, customerCheckedIn);
+    public SingleRoom_CD(int roomNumber, RoomState state, int customerMaxNum, int customerCurrentNum, int cost, Date checkInDate, Date checkOutDate, List<Customer_CD> customerCheckedIn) {
+        super(roomNumber, state, customerMaxNum, customerCurrentNum, cost, checkInDate, checkOutDate, customerCheckedIn);
+        roomType="single";
     }
 
     public SingleRoom_CD() {

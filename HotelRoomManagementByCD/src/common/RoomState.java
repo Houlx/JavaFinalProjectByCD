@@ -7,6 +7,5 @@ package common;
  */
 public enum RoomState {
     FREE,
-    RESERVED,
     CHECKIN
 }

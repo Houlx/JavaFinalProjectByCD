@@ -8,10 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>首页</title>
   </head>
   <body>
-  test
-  $END$
+    <h1>
+        管理员登录
+    </h1>
+    <form action="/LoginServlet" method="post">
+        account:<input type="text" name="account">
+        <br>
+        password:<input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
   </body>
 </html>

@@ -13,8 +13,7 @@ import java.util.List;
  */
 public class Customer_CD {
     private String name;
-    private long idNumber;
-    private List<Room_CD> reservedRooms;
+    private int idNumber;
     private Room_CD roomLive;
     private int expense;
 
@@ -23,23 +22,20 @@ public class Customer_CD {
      *
      * @param name          customer's name
      * @param idNumber      customer's ID number
-     * @param reservedRooms the room(s) this customer reserve
      * @param roomLive      the room this customer lives in
      * @param expense       money the customer need to pay
      */
-    public Customer_CD(String name, long idNumber, List<Room_CD> reservedRooms, Room_CD roomLive, int expense) {
+    public Customer_CD(String name, int idNumber, Room_CD roomLive, int expense) {
         this.name = name;
         this.idNumber = idNumber;
-        this.reservedRooms = reservedRooms;
         this.roomLive = roomLive;
         this.expense = expense;
     }
 
-    public Customer_CD(String name, long idNumber) {
+    public Customer_CD(String name, int idNumber) {
         this.name = name;
         this.idNumber = idNumber;
         this.expense = 0;
-        this.reservedRooms = new ArrayList<>();
         this.roomLive = null;
     }
 
@@ -47,7 +43,6 @@ public class Customer_CD {
         this.name = "";
         this.idNumber = 0;
         this.expense = 0;
-        this.reservedRooms = new ArrayList<>();
         this.roomLive = null;
     }
 
@@ -66,16 +61,8 @@ public class Customer_CD {
         return idNumber;
     }
 
-    public void setIdNumber(long idNumber) {
+    public void setIdNumber(int idNumber) {
         this.idNumber = idNumber;
-    }
-
-    public List<Room_CD> getReservedRooms() {
-        return reservedRooms;
-    }
-
-    public void setReservedRooms(List<Room_CD> reservedRooms) {
-        this.reservedRooms = reservedRooms;
     }
 
     public int getExpense() {

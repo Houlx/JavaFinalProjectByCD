@@ -34,4 +34,27 @@ public class Formatter extends SimpleDateFormat {
             return null;
         }
     }
+
+    public RoomState stringToState(String state) {
+        if (state != null) {
+            if (state.equalsIgnoreCase("free")) {
+                return RoomState.FREE;
+            } else if (state.equalsIgnoreCase("checkin")) {
+                return RoomState.CHECKIN;
+            }
+        }
+        return null;
+    }
+
+    public String stateToString(RoomState state) {
+        switch (state) {
+            case CHECKIN:
+                return "checkin";
+            case FREE:
+                return "free";
+            default:
+                break;
+        }
+        return "";
+    }
 }
