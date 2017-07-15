@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 /**
+ * Servlet of check-in operation
+ * get parameters from jsp page(checkin.jsp), including customer's name, id, room to live in and check-in date. Call checkIn() in management class to record data into database.
+ *
  * @author houlx
  *         Created by CD on 2017/7/14 17:26.
  */

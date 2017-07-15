@@ -37,6 +37,11 @@ public class HotelManagement_CD {
         return format;
     }
 
+    /**
+     * get all customers from database
+     *
+     * @return list of customers
+     */
     public List<Customer_CD> getCustomers() {
         dao = new Dao_CD();
         ResultSet resultSet2 = dao.executeGet("SELECT * FROM customer;");
@@ -60,6 +65,12 @@ public class HotelManagement_CD {
         return customers;
     }
 
+    /**
+     * get all rooms from database
+     *
+     * @return list of rooms
+     * @throws ParseException date formatting exception
+     */
     public List<Room_CD> getAllRooms() throws ParseException {
         dao = new Dao_CD();
         List<Room_CD> rooms = new ArrayList<>();
@@ -84,6 +95,12 @@ public class HotelManagement_CD {
         return rooms;
     }
 
+    /**
+     * get all rooms at 'checkin' state from database
+     *
+     * @return list of rooms
+     * @throws ParseException date formatting exception
+     */
     public List<Room_CD> getCheckedRooms() throws ParseException {
         List<Room_CD> checkedRooms = new ArrayList<>();
         for (Room_CD room : getAllRooms()) {
@@ -126,7 +143,7 @@ public class HotelManagement_CD {
     }
 
     /**
-     * initialize room database, used only once
+     * initialize room database, used only once at the very beginning
      * 50 rooms in total, 10 presidential suites (No.1 to 10), 20 standard rooms (No.11 to 30), 20 single rooms (No.31 to 50)
      */
     public void init() {
@@ -170,7 +187,7 @@ public class HotelManagement_CD {
     }
 
     /**
-     * find one room that is able to live (state is FREE)
+     * find rooms that are able to be lived in by type (number of customer at present is not full)
      *
      * @param roomType type of room. Whether single, standard or presidential
      * @return room
@@ -199,7 +216,14 @@ public class HotelManagement_CD {
         return rooms;
     }
 
-
+    /**
+     * check-in operation
+     *
+     * @param customerName customer's name
+     * @param customerId   customer's id
+     * @param room         number of the room the customer will live in
+     * @param checkInDate  date of check-in
+     */
     public void checkIn(String customerName, int customerId, Room_CD room, String checkInDate) {
         dao = new Dao_CD();
 
@@ -213,6 +237,13 @@ public class HotelManagement_CD {
         }
     }
 
+    /**
+     * calculate dates from check-in to checkout
+     *
+     * @param checkInDate  check-in date
+     * @param checkOutDate checkout date
+     * @return days
+     */
     private int calculateDays(String checkInDate, String checkOutDate) {
         int result = 0;
         if (checkInDate != null && checkOutDate != null) {
@@ -227,7 +258,10 @@ public class HotelManagement_CD {
     }
 
     /**
-     * check out operation
+     * checkout operation
+     *
+     * @param roomNumber   the number of room that will be checked out
+     * @param checkOutDate the date of checkout
      */
     public void checkOut(int roomNumber, String checkOutDate) {
         dao = new Dao_CD();
@@ -253,6 +287,13 @@ public class HotelManagement_CD {
         }
     }
 
+    /**
+     * whether the administrator logged in successfully
+     *
+     * @param account  admin's account
+     * @param password admin's password
+     * @return if login successfully, return true, else false
+     */
     public boolean isAdminLogin(String account, String password) {
         dao = new Dao_CD();
         resultSet = dao.executeGet("SELECT * FROM admin WHERE account = '" + account + "';");
@@ -275,6 +316,9 @@ public class HotelManagement_CD {
         return false;
     }
 
+    /**
+     * close all connection to database
+     */
     private void closeAll() {
         try {
             resultSet.close();

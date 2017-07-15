@@ -3,6 +3,8 @@ package dao;
 import java.sql.*;
 
 /**
+ * Dao Class, implementation of database operating method
+ *
  * @author houlx
  *         Created by CD on 2017/7/12 18:06.
  */
@@ -11,6 +13,11 @@ public class Dao_CD {
     private Connection connection;
     private Statement statement;
 
+    /**
+     * constructor
+     *
+     * @param database url of database
+     */
     public Dao_CD(String database) {
         this.database = database;
     }
@@ -18,6 +25,9 @@ public class Dao_CD {
     public Dao_CD() {
     }
 
+    /**
+     * close database connection
+     */
     public void connectionClose() {
         try {
             this.connection.close();
@@ -26,6 +36,9 @@ public class Dao_CD {
         }
     }
 
+    /**
+     * close statement
+     */
     public void statementClose() {
         try {
             this.statement.close();
@@ -34,6 +47,9 @@ public class Dao_CD {
         }
     }
 
+    /**
+     * package database connecting method
+     */
     private void connect() {
         connection = null;
         try {
@@ -44,6 +60,11 @@ public class Dao_CD {
         }
     }
 
+    /**
+     * execute INSERT, DELETE, UPDATE command
+     *
+     * @param sql sql operating command
+     */
     public void executeSet(String sql) {
         statement = null;
         connect();
@@ -62,6 +83,12 @@ public class Dao_CD {
         }
     }
 
+    /**
+     * get ResultSet using SELECT command
+     *
+     * @param sql sql operating command
+     * @return ResultSet
+     */
     public ResultSet executeGet(String sql) {
         statement = null;
         ResultSet resultSet = null;

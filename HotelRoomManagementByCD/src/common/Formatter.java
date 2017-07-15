@@ -5,13 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * date formatter class
+ * formatter class
  *
  * @author houlx
  *         Created by CD on 2017/7/12 17:29.
  */
 public class Formatter extends SimpleDateFormat {
 
+    /**
+     * constructor
+     *
+     * @param pattern date pattern
+     */
     public Formatter(String pattern) {
         super(pattern);
     }
@@ -19,6 +24,13 @@ public class Formatter extends SimpleDateFormat {
     public Formatter() {
     }
 
+    /**
+     * format string to date
+     *
+     * @param date date shown by string
+     * @return date
+     * @throws ParseException parse exception
+     */
     public Date stringToDate(String date) throws ParseException {
         if (date != null) {
             return this.parse(date);
@@ -27,6 +39,12 @@ public class Formatter extends SimpleDateFormat {
         }
     }
 
+    /**
+     * format date to string
+     *
+     * @param date date
+     * @return date shown by string using pattern of formatter
+     */
     public String dateToString(Date date) {
         if (date != null) {
             return this.format(date);
@@ -35,6 +53,12 @@ public class Formatter extends SimpleDateFormat {
         }
     }
 
+    /**
+     * format string to enum State
+     *
+     * @param state state shown by string
+     * @return item of enum in RoomState
+     */
     public RoomState stringToState(String state) {
         if (state != null) {
             if (state.equalsIgnoreCase("free")) {
@@ -46,6 +70,12 @@ public class Formatter extends SimpleDateFormat {
         return null;
     }
 
+    /**
+     * format state to string
+     *
+     * @param state item in RoomState
+     * @return state shown by string
+     */
     public String stateToString(RoomState state) {
         switch (state) {
             case CHECKIN:

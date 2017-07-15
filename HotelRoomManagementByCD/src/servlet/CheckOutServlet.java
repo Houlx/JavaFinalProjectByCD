@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 /**
+ * Checkout Servlet
+ * get parameters from checkout.jsp, including number of room that will be checked out, and checkout date. Call checkOut() in management object to record data into database
+ *
  * @author houlx
  *         Created by CD on 2017/7/14 18:06.
  */

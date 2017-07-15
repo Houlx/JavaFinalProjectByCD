@@ -3,6 +3,7 @@
 <%@ page import="entity.room.Room_CD" %>
 <%@ page import="java.util.List" %>
 <%--
+    In this page administrator can check-in room
   Created by IntelliJ IDEA.
   User: houlx
   Date: 2017/7/14
@@ -31,8 +32,9 @@
         <%
             HotelManagement_CD management = new HotelManagement_CD();
             for (Room_CD room : management.findRoomsAbleToLive("presidential")) {
-                %>
-                <option value="<%=room.getRoomNumber()%>"><%=room.getRoomNumber()%></option>
+        %>
+        <option value="<%=room.getRoomNumber()%>"><%=room.getRoomNumber()%>
+        </option>
         <%
             }
         %>
