@@ -50,41 +50,38 @@ public class HotelManagement_CD {
             }
         } catch (SQLException | ParseException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                resultSet2.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return customers;
     }
 
     public List<Room_CD> getAllRooms() throws ParseException {
         dao = new Dao_CD();
-        resultSet = dao.executeGet("SELECT * FROM rooms");
+        List<Room_CD> rooms = new ArrayList<>();
+        ResultSet resultSet1 = dao.executeGet("SELECT * FROM rooms");
+        RoomFactory factory = new RoomFactory();
         try {
-            while (resultSet.next()) {
-                String roomType = resultSet.getString("room_type");
-                String state = resultSet.getString("room_state");
-                int roomNum = resultSet.getInt("room_number");
-                int cost = resultSet.getInt("cost");
-                int max = resultSet.getInt("maximum_customer");
-                int curCus = resultSet.getInt("current_cus_num");
-                String checkInDate = resultSet.getString("checkin_date");
-                String checkOutDate = resultSet.getString("checkout_date");
-                switch (resultSet.getString("room_type")) {
-                    case "presidential":
-                        allRooms.add(new PresidentialSuite_CD(roomNum, format.stringToState(state), max, curCus, cost, format.stringToDate(checkInDate), format.stringToDate(checkOutDate), null));
-                        break;
-                    case "standard":
-                        allRooms.add(new StandardRoom_CD(roomNum, format.stringToState(state), max, curCus, cost, format.stringToDate(checkInDate), format.stringToDate(checkOutDate), null));
-                        break;
-                    case "single":
-                        allRooms.add(new SingleRoom_CD(roomNum, format.stringToState(state), max, curCus, cost, format.stringToDate(checkInDate), format.stringToDate(checkOutDate), null));
-                        break;
-                    default:
-                        break;
-                }
+            while (resultSet1.next()) {
+                String roomType = resultSet1.getString("room_type");
+                String state = resultSet1.getString("room_state");
+                int roomNum = resultSet1.getInt("room_number");
+                int cost = resultSet1.getInt("cost");
+                int max = resultSet1.getInt("maximum_customer");
+                int curCus = resultSet1.getInt("current_cus_num");
+                String checkInDate = resultSet1.getString("checkin_date");
+                String checkOutDate = resultSet1.getString("checkout_date");
+                Room_CD room = factory.createRoom(roomType, roomNum, format.stringToState(state), max, curCus, cost, format.stringToDate(checkInDate), format.stringToDate(checkOutDate));
+                rooms.add(room);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return allRooms;
+        return rooms;
     }
 
     public List<Room_CD> getCheckedRooms() throws ParseException {
@@ -153,33 +150,16 @@ public class HotelManagement_CD {
      */
     public Room_CD findRoom(int roomNumber) throws ParseException {
         dao = new Dao_CD();
+        RoomFactory factory = new RoomFactory();
         Room_CD room = null;
         resultSet = dao.executeGet("SELECT * FROM rooms WHERE room_number =" + roomNumber + ";");
         try {
             if (resultSet.next()) {
                 System.out.println(resultSet.getString("room_type"));
-                switch (resultSet.getString("room_type")) {
-                    case "presidential":
-                        room = new PresidentialSuite_CD(roomNumber, format.stringToState(resultSet.getString("room_state")));
-                        room.setCustomerCurrentNum(resultSet.getInt("current_cus_num"));
-                        room.setCheckInDate(format.stringToDate(resultSet.getString("checkin_date")));
-                        room.setCheckOutDate(format.stringToDate(resultSet.getString("checkout_date")));
-                        break;
-                    case "standard":
-                        room = new StandardRoom_CD(roomNumber, format.stringToState(resultSet.getString("room_state")));
-                        room.setCustomerCurrentNum(resultSet.getInt("current_cus_num"));
-                        room.setCheckInDate(format.stringToDate(resultSet.getString("checkin_date")));
-                        room.setCheckOutDate(format.stringToDate(resultSet.getString("checkout_date")));
-                        break;
-                    case "single":
-                        room = new SingleRoom_CD(roomNumber, format.stringToState(resultSet.getString("room_state")));
-                        room.setCustomerCurrentNum(resultSet.getInt("current_cus_num"));
-                        room.setCheckInDate(format.stringToDate(resultSet.getString("checkin_date")));
-                        room.setCheckOutDate(format.stringToDate(resultSet.getString("checkout_date")));
-                        break;
-                    default:
-                        break;
-                }
+                room = factory.createRoom(resultSet.getString("room_type"), roomNumber, format.stringToState(resultSet.getString("room_state")));
+                room.setCustomerCurrentNum(resultSet.getInt("current_cus_num"));
+                room.setCheckInDate(format.stringToDate(resultSet.getString("checkin_date")));
+                room.setCheckOutDate(format.stringToDate(resultSet.getString("checkout_date")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -288,8 +268,6 @@ public class HotelManagement_CD {
         } finally {
             try {
                 resultSet.close();
-//                dao.statementClose();
-//                dao.connectionClose();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -297,13 +275,7 @@ public class HotelManagement_CD {
         return false;
     }
 
-    public static void main(String[] args) throws SQLException {
-        HotelManagement_CD management = new HotelManagement_CD();
-        List<Customer_CD> customers = management.getCustomers();
-        System.out.println(customers.size());
-    }
-
-    private void closeAll(){
+    private void closeAll() {
         try {
             resultSet.close();
             dao.statementClose();
@@ -311,5 +283,10 @@ public class HotelManagement_CD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        HotelManagement_CD management = new HotelManagement_CD();
+        management.init();
     }
 }

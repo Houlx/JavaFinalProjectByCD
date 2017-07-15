@@ -39,7 +39,7 @@
     function change() {
         <%
             HotelManagement_CD management = new HotelManagement_CD();
-            List<Room_CD> rooms = management.getAllRooms();
+//            List<Room_CD> rooms = management.getAllRooms();
         %>
         var x = document.getElementById("room_type");
         var y = document.getElementById("room_number");

@@ -23,7 +23,7 @@
 <br>
 <a href="customers.jsp">customers</a>
 <br>
-<<a href="checkout.jsp">checkout</a>
+<a href="checkout.jsp">checkout</a>
 <table border="1">
     <tr>
         <th>Type</th>
@@ -38,8 +38,7 @@
     <%
         HotelManagement_CD hotelManagement = new HotelManagement_CD();
         try {
-            List<Room_CD> rooms = hotelManagement.getAllRooms();
-            for (Room_CD room : rooms) {
+            for (Room_CD room : hotelManagement.getAllRooms()) {
     %>
     <tr>
         <td><%=room.getRoomType()%>
@@ -63,13 +62,15 @@
             }
         } catch (ParseException e) {
             e.printStackTrace();
-        } finally {
+        } /*finally {
             try {
-                hotelManagement.getResultSet().close();
+                if (hotelManagement.getResultSet() != null) {
+                    hotelManagement.getResultSet().close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     %>
 </table>
 </body>
