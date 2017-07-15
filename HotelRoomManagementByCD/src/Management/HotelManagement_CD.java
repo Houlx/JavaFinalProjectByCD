@@ -285,8 +285,8 @@ public class HotelManagement_CD {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         HotelManagement_CD management = new HotelManagement_CD();
         management.init();
-    }
+    }*/
 }
