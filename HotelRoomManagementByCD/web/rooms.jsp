@@ -23,7 +23,7 @@
 <br>
 <a href="customers.jsp">customers</a>
 <br>
-<<a href="checkout.jsp">checkout</a>
+<a href="checkout.jsp">checkout</a>
 <table border="1">
     <tr>
         <th>Type</th>
