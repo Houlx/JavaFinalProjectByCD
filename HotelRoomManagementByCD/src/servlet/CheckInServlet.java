@@ -31,8 +31,6 @@ public class CheckInServlet extends HttpServlet {
         try {
             Room_CD foundRoom = management.findRoom(roomNum);
             management.getResultSet().close();
-//            management.getDao().statementClose();
-//            management.getDao().connectionClose();
             management.checkIn(name, id, foundRoom, checkInDate);
             response.sendRedirect("rooms.jsp");
         } catch (ParseException | SQLException e) {

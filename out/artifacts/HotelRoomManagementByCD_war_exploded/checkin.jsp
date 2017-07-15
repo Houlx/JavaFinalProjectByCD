@@ -23,12 +23,19 @@
     <br>
     Room:
     <select id="room_type" onchange="change()">
-        <option>presidential</option>
+        <option selected="selected">presidential</option>
         <option>standard</option>
         <option>single</option>
     </select>
     <select id="room_number" name="room_number">
-
+        <%
+            HotelManagement_CD management = new HotelManagement_CD();
+            for (Room_CD room : management.findRoomsAbleToLive("presidential")) {
+                %>
+                <option value="<%=room.getRoomNumber()%>"><%=room.getRoomNumber()%></option>
+        <%
+            }
+        %>
     </select>
     <br>
     Date:<input type="text" name="checkin_date">
@@ -38,7 +45,7 @@
 <script type="text/javascript">
     function change() {
         <%
-            HotelManagement_CD management = new HotelManagement_CD();
+            //HotelManagement_CD management = new HotelManagement_CD();
 //            List<Room_CD> rooms = management.getAllRooms();
         %>
         var x = document.getElementById("room_type");

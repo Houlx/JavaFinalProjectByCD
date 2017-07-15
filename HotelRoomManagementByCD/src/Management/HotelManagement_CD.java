@@ -202,9 +202,9 @@ public class HotelManagement_CD {
 
     public void checkIn(String customerName, int customerId, Room_CD room, String checkInDate) {
         dao = new Dao_CD();
-//        resultSet = dao.executeGet("SELECT * FROM customer WHERE room_living=" + room.getRoomNumber() + ";");
-        dao.executeSet("DELETE FROM customer WHERE room_living = " + room.getRoomNumber() + ";");
+
         if (room.getCustomerCurrentNum() < room.getCustomerMaxNum() && room.getState() != RoomState.CHECKIN) {
+            dao.executeSet("DELETE FROM customer WHERE room_living = " + room.getRoomNumber() + ";");
             dao.executeSet("INSERT INTO customer (name,id,expense,room_living) VALUES ('" + customerName + "'," + customerId + ",0," + room.getRoomNumber() + ");");
             dao.executeSet("UPDATE rooms SET room_state = 'checkin', current_cus_num = current_cus_num+1, checkin_date='" + checkInDate + "',checkout_date=NULL WHERE room_number = " + room.getRoomNumber() + ";");
         } else if (room.getCustomerCurrentNum() < room.getCustomerMaxNum() && room.getState() == RoomState.CHECKIN) {
